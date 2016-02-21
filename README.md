@@ -1,6 +1,7 @@
 # uploader
 a framework of upload.
-一个文件上框架使用方法为：
+一个文件上框架
+使用方法为：
 public class UploadServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
