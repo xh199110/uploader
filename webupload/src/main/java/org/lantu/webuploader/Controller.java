@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public interface Controller {
 	
 	/**
-	 * 得到保存的文件的Dir<br/>
+	 * 得到保存的文件的Dir,为绝对路径<br/>
 	 * 比如  /home/work/tomcat803/webapps/dsis/upload/xxxxx/
 	 * @param request HttpServletRequest匹配
 	 * @return File要保存的文件

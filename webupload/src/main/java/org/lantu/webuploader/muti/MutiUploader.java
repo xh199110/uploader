@@ -48,7 +48,7 @@ public class MutiUploader extends AbstractUploader{
 					logger.debug(f.getAbsolutePath());
 				}
 			} catch (Exception e) {
-				fileInfo.setThrowable(e);
+			  logger.error("文件上传错误！！",e);
 				fileInfo.setStatus(UpConstants.UPLOAD_ERROR);
 				setStatus(UpConstants.UPLOAD_ERROR);
 			}
@@ -65,8 +65,8 @@ public class MutiUploader extends AbstractUploader{
 				processUploadedFile(f,infos);
 			 //执行参数
 			} catch (Exception e) {
-				setThrowable(e);
-				setStatus(UpConstants.UPLOAD_ERROR);
+			   logger.error("文件上传发生错误", e);
+				  setStatus(UpConstants.UPLOAD_ERROR);
 			}
 		}
 	}

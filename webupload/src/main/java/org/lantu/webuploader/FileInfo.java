@@ -25,12 +25,6 @@ import java.io.File;
 			public String getUrl();
 			
 			/**
-			 * 得到异常信息
-			 * @return
-			 */
-			public Throwable getThrowable();
-			
-			/**
 			 * 此文件状态信息
 			 * @return String
 			 */

@@ -41,8 +41,6 @@ public abstract class AbstractUploader implements Uploader {
     private Controller controller = null;
 
     private ContentTypeFilter filter;
-    /** 异常信息 **/
-    private Throwable throwable;
     /** 文件信息 */
     private List<FileInfo> fileInfos;
     /**
@@ -116,20 +114,19 @@ public abstract class AbstractUploader implements Uploader {
                 if (item.isFormField()) {
                     processFormField(item);
                 } else if (!item.isFormField()) {
-
                     fileItems.add(item);
                 }
             }
             // 捕捉异常
         } catch (FileUploadException e) {
             status = UpConstants.UPLOAD_IO_ERROR;
-            throwable = e;
+            logger.error("文件上传错误！", e );
         } catch (IOException e) {
             status = UpConstants.UPLOAD_IO_ERROR;
-            throwable = e;
+            logger.error("文件IO错误！", e );
         } catch (Exception e) {
             status = UpConstants.UPLOAD_ERROR;
-            throwable = e;
+            logger.error("文件上传发生错误", e);
         }
     }
 
@@ -146,7 +143,7 @@ public abstract class AbstractUploader implements Uploader {
                 chain.doProcess();
             }
         } catch (Exception e) {
-            throwable = e;
+            logger.error("文件处理发生错误", e);
             status = UpConstants.FILE_PROCESSE_ERROR;
         }
         // 处理执行链
@@ -216,9 +213,6 @@ public abstract class AbstractUploader implements Uploader {
         this.maxFileNum = maxFileNum;
     }
 
-    public Throwable getThrowable() {
-        return throwable;
-    }
 
     public String getStatus() {
         return status;
@@ -236,9 +230,6 @@ public abstract class AbstractUploader implements Uploader {
         this.chain = chain;
     }
 
-    public void setThrowable(Throwable t) {
-        this.throwable = t;
-    }
 
     public void setStatus(String status) {
         this.status = status;

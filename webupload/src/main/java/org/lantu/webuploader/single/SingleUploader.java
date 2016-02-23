@@ -45,7 +45,7 @@ public class SingleUploader extends AbstractUploader {
 			}
 			// 执行参数
 		} catch (Exception e) {
-			setThrowable(e);
+			 logger.error("文件上传发生错误", e);
 			setStatus(UpConstants.UPLOAD_ERROR);
 		}
 	}
@@ -95,12 +95,10 @@ public class SingleUploader extends AbstractUploader {
 			}
 			setStatus(UpConstants.FILE_CHUNK);
 		} catch (IOException e) {
-			setThrowable(e);
 			fileInfo.setStatus(UpConstants.FILE_CHUNK_ERROR);
 			delFileMapInfo(uploadFile.getPath());
 			logger.error("分片错误", e);
 		} catch (Exception e) {
-			setThrowable(e);
 			fileInfo.setStatus(UpConstants.FILE_CHUNK_UPLOAD_ERROR);
 			logger.error("分片上传错误", e);
 		}
@@ -198,7 +196,7 @@ public class SingleUploader extends AbstractUploader {
 					logger.debug(f.getAbsolutePath());
 				}
 			} catch (Exception e) {
-				fileInfo.setThrowable(e);
+			    logger.error("文件上传错误！",e);
 				fileInfo.setStatus(UpConstants.UPLOAD_ERROR);
 				setStatus(UpConstants.UPLOAD_ERROR);
 			}

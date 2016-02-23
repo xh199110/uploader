@@ -13,8 +13,6 @@ public class DefaultFileInfo implements FileInfo {
 	
 	private File file=null;
 	
-	private Throwable throwable=null;
-	
 	private String status=null;
 	
 	private String orginlName=null;
@@ -26,10 +24,6 @@ public class DefaultFileInfo implements FileInfo {
 
 	public File getFile() {
 		return this.file;
-	}
-
-	public Throwable getThrowable() {
-		return this.throwable;
 	}
 
 	public String getStatus() {
@@ -47,10 +41,6 @@ public class DefaultFileInfo implements FileInfo {
 
 	public void setFile(File f) {
 		this.file = f;
-	}
-
-	public void setThrowable(Throwable t) {
-		this.throwable = t;
 	}
 
 	public void setStatus(String status) {

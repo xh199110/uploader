@@ -71,12 +71,6 @@ public interface Uploader {
 	public void setMaxFileNum(int maxFileNum);
 	
 	/**
-	 * 得到抛出的异常
-	 * @return Throwable
-	 */
-	public Throwable getThrowable();
-	
-	/**
 	 * 返回此次操作结果
 	 * @return String
 	 */
