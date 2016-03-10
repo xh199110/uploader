@@ -15,7 +15,7 @@ public class DefaultFileInfo implements FileInfo {
 	
 	private String status=null;
 	
-	private String orginlName=null;
+	private String originalName=null;
 	
 	private String contentType=null;
 
@@ -30,9 +30,6 @@ public class DefaultFileInfo implements FileInfo {
 		return this.status;
 	}
 
-	public String getOrginlName() {
-		return this.orginlName;
-	}
 
 	public String getContentType() {
 		return this.contentType;
@@ -47,9 +44,6 @@ public class DefaultFileInfo implements FileInfo {
 		this.status = status;
 	}
 
-	public void setOrginlName(String orginlName) {
-		this.orginlName = orginlName;
-	}
 
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
@@ -62,5 +56,12 @@ public class DefaultFileInfo implements FileInfo {
 	public void setUrl(String url) {
 		this.url=url;
 	}
-	
+
+    public String getOriginalName() {
+        return originalName;
+    }
+
+    public void setOriginalName(String originalName) {
+        this.originalName = originalName;
+    }
 }

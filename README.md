@@ -3,6 +3,8 @@ a framework of upload.
 一个文件上框架
 使用方法为：
 
+
+
 public class UploadServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -18,13 +20,19 @@ public class UploadServlet extends HttpServlet {
 				uploader.setController(new StandardController(){
 				    @Override
 				    public String getFileDir(HttpServletRequest request, String orginalName) {//设置文件存放路径
-				        //比如:上传的文件现在要保存到c盘：c:/home/image
-				       File  f=new File("c:/home/image");
+				        //比如:上传的文件现在要保存/home/xiaohua/download
+				       File  f=new File("/home/xiaohua/download");
 				       if(!f.exists()){
 				           f.mkdirs();
 				       }
 				       return f.getAbsolutePath()+File.separator;
 				    }
+				    
+				    @Override
+				    public String urlFix(HttpServletRequest request, File file) {
+				        return file.getAbsolutePath();//数据库存储绝对路径
+				    }
+				    
 				});
 				uploader.init(req);
 				//得到上传好的文件
@@ -39,15 +47,16 @@ public class UploadServlet extends HttpServlet {
 					for(FileInfo f:fileInfos){
                         resp.getWriter().write(f.getStatus()+"\r\n");
                         if(f.getStatus().equals(UpConstants.SUCCESS)){//如果这个文件上传成功
-                            System.out.println(f.getUrl());//打印出虚拟路径
+                            System.out.println(f.getUrl());//打印出需要的路径
                         };
                     }
 					
-                    resp.getWriter().write("success"+":"+fileInfos.size());
+                    resp.getWriter().write("num"+":"+fileInfos.size());
 				}
 				
 	}
 }
+
 
 
 

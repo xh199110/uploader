@@ -62,7 +62,7 @@ public class SingleUploader extends AbstractUploader {
 
 		// 封装文件信息
 		DefaultFileInfo fileInfo = new DefaultFileInfo();
-		fileInfo.setOrginlName(item.getName());
+		fileInfo.setOriginalName(item.getName());
 		fileInfo.setContentType(item.getContentType());
 
 		HttpServletRequest request = getRequest();
@@ -93,6 +93,7 @@ public class SingleUploader extends AbstractUploader {
 				// 删除内存中的缓存
 				delFileMapInfo(uploadFile.getPath());
 			}
+			//设置当前上传为分片状态
 			setStatus(UpConstants.FILE_CHUNK);
 		} catch (IOException e) {
 			fileInfo.setStatus(UpConstants.FILE_CHUNK_ERROR);
@@ -106,6 +107,7 @@ public class SingleUploader extends AbstractUploader {
 		// 文件上传合并成功
 		if (file != null) {
 			fileInfo.setStatus(UpConstants.SUCCESS);
+			fileInfo.setUrl(getController().urlFix(getRequest(), file));
 			if (logger.isDebugEnabled()) {
 				logger.debug(file.getAbsolutePath());
 			}
@@ -184,7 +186,7 @@ public class SingleUploader extends AbstractUploader {
 		if (!item.isFormField()) {
 			// 封装文件信息
 			DefaultFileInfo fileInfo = new DefaultFileInfo();
-			fileInfo.setOrginlName(item.getName());
+			fileInfo.setOriginalName(item.getName());
 			fileInfo.setContentType(item.getContentType());
 			try {
 				File f = new File(getController().getFileDir(getRequest(), item.getName())

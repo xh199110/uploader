@@ -25,7 +25,7 @@ public class MutiUploader extends AbstractUploader{
 		if (!item.isFormField()) {
 			//封装文件信息
 			DefaultFileInfo fileInfo=new DefaultFileInfo();
-			fileInfo.setOrginlName(item.getName());
+			fileInfo.setOriginalName(item.getName());
 			fileInfo.setContentType(item.getContentType());
 			String result = validate(item);
             if (!result.equals(UpConstants.SUCCESS)) {
@@ -40,9 +40,7 @@ public class MutiUploader extends AbstractUploader{
 				File f = new File(getController().getFileDir(getRequest(), item.getName()) + getController().newName(item.getName()));
 				item.write(f);
 				fileInfo.setFile(f);
-				String projectName=getRequest().getContextPath().substring(1, getRequest().getContextPath().length());
-				//从项目名那截取
-				fileInfo.setUrl(f.getAbsolutePath().substring(f.getAbsolutePath().indexOf(projectName)+projectName.length()));
+				fileInfo.setUrl(getController().urlFix(getRequest(), f));
 				fileInfo.setStatus(UpConstants.SUCCESS);
 				if(logger.isDebugEnabled()){
 					logger.debug(f.getAbsolutePath());
