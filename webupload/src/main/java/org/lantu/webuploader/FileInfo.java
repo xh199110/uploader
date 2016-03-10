@@ -34,7 +34,7 @@ import java.io.File;
 			 * 得到源文件的信息
 			 * @return String
 			 */
-			public String getOrginlName();
+			public String getOriginalName();
 			
 			/**
 			 * 

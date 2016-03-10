@@ -27,4 +27,9 @@ public class StandardController implements Controller {
 		return Md5Utils.hash(orginalName.substring(0, orginalName.lastIndexOf("."))) + "."
 				+ orginalName.substring(orginalName.lastIndexOf(".") + 1);
 	}
+
+    public String urlFix(HttpServletRequest request, File file) {
+        String projectName=request.getContextPath().substring(1, request.getContextPath().length());
+        return  file.getAbsolutePath().substring(file.getAbsolutePath().indexOf(projectName)+projectName.length());
+    }
 }

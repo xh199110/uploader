@@ -26,5 +26,12 @@ public interface Controller {
 	 */
 	public String newName(String orginalName);
 	
+	/**
+     * 数据库存储定制方法
+     * @param request HttpServletRequest
+     * @param file File
+     * @return String 返回数据库存储的路径
+     */
+    String urlFix(HttpServletRequest request, File file);
 	
 }
